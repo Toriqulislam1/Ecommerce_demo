@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
  use App\Http\Controllers\Backend\adminController;
+ use App\Http\Controllers\Backend\brandController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,11 +20,18 @@ Route::get('/', function () {
 
 //  Route::get('/admin/login', [adminController::class, 'show']);
 
+//Brand
 
- 
+Route::prefix('brand')->controller(brandController::class)->group(function () {
+    Route::get('/brand/view', 'create')->name('brand-view');//index
+    Route::post('/brand/add', 'brandAdd')->name('brand-add');//add brand
+    // Route::get('/bills/{bill}/invoice/pdf', 'invoice')->name('pdf.invoice');
+});
+
+
 
 Route::controller(adminController::class)->group(function () {
         Route::get('/admin/login', 'login')->name('loginFrom');
-          Route::post('/login/check', 'loginCheck')->name('login-request');
+          Route::post('/login/success', 'loginCheck')->name('login-request');
         // Route::get('/bills/{bill}/invoice/pdf', 'invoice')->name('pdf.invoice');
     });

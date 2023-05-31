@@ -79,7 +79,7 @@
  <div class="form-group">
     <h5>Brand Name English  <span class="text-danger">*</span></h5>
     <div class="controls">
- <input type="text"  name="brand_name_en" class="form-control" >
+ <input type="text"  name="brand_name" class="form-control" >
  @error('brand_name_en')
  <span class="text-danger">{{ $message }}</span>
  @enderror

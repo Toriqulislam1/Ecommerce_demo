@@ -18,6 +18,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+
+
 //  Route::get('/admin/login', [adminController::class, 'show']);
 
 //Brand
@@ -33,5 +36,7 @@ Route::prefix('brand')->controller(brandController::class)->group(function () {
 Route::controller(adminController::class)->group(function () {
         Route::get('/admin/login', 'login')->name('loginFrom');
           Route::post('/login/success', 'loginCheck')->name('login-request');
+          Route::get('/logout', 'adminLogout')->name('log-out');
+
         // Route::get('/bills/{bill}/invoice/pdf', 'invoice')->name('pdf.invoice');
     });

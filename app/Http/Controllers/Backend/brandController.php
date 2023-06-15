@@ -10,7 +10,8 @@ use Image;
 class brandController extends Controller
 {
     public function create(){
-        return view('admin.brand.create');
+        $brands =brand::all();
+        return view('admin.brand.create',['brands'=>$brands]);
     }//end
 
     public function brandAdd(Request $request){
@@ -18,7 +19,7 @@ class brandController extends Controller
 
         $image = $request->file('brand_image');
     	$name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-    	Image::make($image)->resize(917,1000)->save('upload/brand/'.$name_gen);
+    	Image::make($image)->save('upload/brand/'.$name_gen);
     	$save_url = 'upload/brand/'.$name_gen;
 
         brand::insert([
@@ -27,5 +28,48 @@ class brandController extends Controller
 
         ]);
 
-    }
+       return redirect()->back();
+
+    }//end
+
+    public function brandEdit($id){
+
+        // $brands = brand::all()->first()->get();
+        // dd($brands);
+        // die();
+        return view('admin.brand.edit');
+    }//end
+
+    public function brandUpdate(Request $request){
+
+        $id = $request->id;
+        $old_img = $request->old_image;
+        unlink( $old_img);
+
+
+
+        if(isset($request->brand_image)){
+
+            $image = $request->file('brand_image');
+            $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+            Image::make($image)->save('upload/brand/'.$name_gen);
+            $save_url = 'upload/brand/'.$name_gen;
+
+            brand::find($id)->update([
+                'brand_name'=>$request->brand_name,
+                'brand_img'=>$save_url,
+            ]);
+        }else{
+
+            brand::find($id)->update([
+                'brand_name'=>$request->brand_name,
+            ]);
+        }
+
+    }//end
+
+
+
+
+
 }

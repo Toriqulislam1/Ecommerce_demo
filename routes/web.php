@@ -21,22 +21,20 @@ Route::get('/', function () {
 
 
 
-//  Route::get('/admin/login', [adminController::class, 'show']);
 
-//Brand
+Route::controller(adminController::class)->group(function () {
+    Route::get('/admin/login', 'login')->name('loginFrom');
+      Route::post('/login/success', 'loginCheck')->name('login-request');
+      Route::get('/logout', 'adminLogout')->name('log-out');
 
-Route::prefix('brand')->controller(brandController::class)->group(function () {
-    Route::get('/brand/view', 'create')->name('brand-view');//index
-    Route::post('/brand/add', 'brandAdd')->name('brand-add');//add brand
     // Route::get('/bills/{bill}/invoice/pdf', 'invoice')->name('pdf.invoice');
 });
 
 
 
-Route::controller(adminController::class)->group(function () {
-        Route::get('/admin/login', 'login')->name('loginFrom');
-          Route::post('/login/success', 'loginCheck')->name('login-request');
-          Route::get('/logout', 'adminLogout')->name('log-out');
-
-        // Route::get('/bills/{bill}/invoice/pdf', 'invoice')->name('pdf.invoice');
-    });
+Route::prefix('brand')->controller(brandController::class)->group(function () {
+    Route::get('/view', 'create')->name('brand-view');//index
+    Route::post('/add', 'brandAdd')->name('brand-add');//add brand
+    Route::get('/edit/{id}', 'brandEdit')->name('brand.edit');//index edit
+    Route::post('/update', 'brandUpdate')->name('brand-update');//update store
+});

@@ -34,17 +34,18 @@ class brandController extends Controller
 
     public function brandEdit($id){
 
-        // $brands = brand::all()->first()->get();
-        // dd($brands);
-        // die();
-        return view('admin.brand.edit');
+        $brands = brand::find($id);
+
+
+
+        return view('admin.brand.edit',['brands'=>$brands]);
     }//end
 
     public function brandUpdate(Request $request){
 
         $id = $request->id;
         $old_img = $request->old_image;
-        unlink( $old_img);
+        // unlink( $old_img);
 
 
 

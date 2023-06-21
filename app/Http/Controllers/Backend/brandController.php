@@ -49,7 +49,7 @@ class brandController extends Controller
 
 
 
-        if(isset($request->brand_image)){
+
 
             $image = $request->file('brand_image');
             $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
@@ -60,16 +60,19 @@ class brandController extends Controller
                 'brand_name'=>$request->brand_name,
                 'brand_img'=>$save_url,
             ]);
-        }else{
 
-            brand::find($id)->update([
-                'brand_name'=>$request->brand_name,
-            ]);
-        }
-
+            return redirect()->route('brand-view');
     }//end
 
+public function brandDelete($id){
 
+    $delete = brand::find($id);
+    unlink($delete->brand_img);
+    brand::find($id)->delete();
+
+    return redirect()->route('brand-view');
+
+}//end
 
 
 

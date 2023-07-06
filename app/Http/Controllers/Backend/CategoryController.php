@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Image;
 use App\Models\category;
+use App\Models\subCategory;
 
 
 class CategoryController extends Controller
@@ -67,13 +68,60 @@ class CategoryController extends Controller
         $image->delete();
         return redirect()->back();
     }//end
-    
+
+    //sub category
+
+    public function subCreate(){
+
+
+        $categories= category::all();
+        $subCategories= subCategory::all();
+        return view('admin.category.sub.index',[
+
+            'categories'=>$categories,
+            'subCategories'=>$subCategories,
+    ]);
+
+    }//end
+
+
+    public function subStore(Request $request){
 
 
 
+        subCategory::insert([
+            'category_id'=>$request->category_id,
+            'subCategory_name'=>$request->subcategory_name,
+        ]);
+
+       return redirect()->back();
+
+
+    }//end
+
+    public function subCategoryEdit($id){
+
+        $info = subCategory::find($id);
+        $categories= category::all();
+        return view('admin.category.sub.edit',[
+            'info'=>$info,
+            'categories'=>$categories,
+        ]);
+    }//end
+
+    public function subcategoryUpdate(Request $request){
 
 
 
+    subCategory::find($request->id)->update([
 
+        'category_id'=>$request->category_id,
+        'subCategory_name'=>$request->subcategory_name,
+
+    ]);
+
+    return redirect()->back();
+
+    }//end
 
 }

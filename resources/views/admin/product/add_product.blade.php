@@ -68,22 +68,25 @@
 			</div> <!-- end col md 4 -->
 
 
-			<div class="col-md-4">
+            <div class="col-md-4">
 
-				 <div class="form-group">
-	<h5>SubCategory Select <span class="text-danger">*</span></h5>
-	<div class="controls">
-		<select name="subcategory_id" class="form-control" required="" >
-			<option value="" selected="" disabled="">Select SubCategory</option>
+                <div class="form-group">
+   <h5>SubCategory Select <span class="text-danger">*</span></h5>
+   <div class="controls">
+       <select name="category_id" class="form-control category_id" required="" >
+           <option value="" selected="" disabled="">SubCategory Select</option>
+           @foreach ($subcategories as $subcategory )
+<option value="{{ $subcategory->id }}">{{ $subcategory->subCategory_name }}</option>
+           @endforeach
+       </select>
+       @error('category_id')
+    <span class="text-danger">{{ $message }}</span>
+    @enderror
+    </div>
+        </div>
 
-		</select>
-		@error('subcategory_id')
-	 <span class="text-danger">{{ $message }}</span>
-	 @enderror
-	 </div>
-		 </div>
+           </div> <!-- end col md 4 -->
 
-			</div> <!-- end col md 4 -->
 
 		</div> <!-- end 1st row  -->
 
@@ -110,7 +113,7 @@
 			<div class="col-md-4">
 
 				 <div class="form-group">
-			<h5>Product Name En <span class="text-danger">*</span></h5>
+			<h5>Product Name  <span class="text-danger">*</span></h5>
 			<div class="controls">
 				<input type="text" name="product_name_en" class="form-control" required="">
      @error('product_name_en')
@@ -119,42 +122,13 @@
 	 	  </div>
 		</div>
 
-			</div> <!-- end col md 4 -->
-
-
-			<div class="col-md-4">
-
-				 <div class="form-group">
-			<h5>Product Name Hin <span class="text-danger">*</span></h5>
-			<div class="controls">
-				<input type="text" name="product_name_hin" class="form-control" required="">
-     @error('product_name_hin')
-	 <span class="text-danger">{{ $message }}</span>
-	 @enderror
-	 		 </div>
-		</div>
-
-			</div> <!-- end col md 4 -->
 
 		</div> <!-- end 2nd row  -->
 
 
 
 <div class="row"> <!-- start 3RD row  -->
-			<div class="col-md-4">
-
-	  <div class="form-group">
-			<h5>Product Code <span class="text-danger">*</span></h5>
-			<div class="controls">
-				<input type="text" name="product_code" class="form-control" required="">
-     @error('product_code')
-	 <span class="text-danger">{{ $message }}</span>
-	 @enderror
-	 	  </div>
-		</div>
-
-			</div> <!-- end col md 4 -->
-
+			
 			<div class="col-md-4">
 
 				 <div class="form-group">
@@ -481,25 +455,6 @@
 		</section>
 		<!-- /.content -->
 	  </div>
-
-
-
-
-
-      <script>
-
-$('.category_id').change(function(){
-
-    alert("Hello! I am an alert box!");
-})
-
-      </script>
-
-
-
-
-
-
 
 
 

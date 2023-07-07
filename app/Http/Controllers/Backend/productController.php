@@ -23,4 +23,7 @@ class productController extends Controller
             'subcategories'=>$subcategories,
         ]);
     }//end
+
+
+   
 }

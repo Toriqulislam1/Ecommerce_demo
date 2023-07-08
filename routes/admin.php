@@ -32,9 +32,8 @@ Route::prefix('product')->controller(productController::class)->group(function (
 
     Route::get('/add', 'create')->name('product-add');//index
 
-
-    // Route::post('/store', 'store')->name('category-store');//store
-    // Route::get('/edit/{id}', 'categoryEdit')->name('category.edit');//edit
+    Route::post('/store', 'store')->name('product-store');//store
+     Route::get('/manage', 'manageProduct')->name('product-manage');//manage
     // Route::post('/update', 'categoryUpdate')->name('category-update');//update
     // Route::get('/delete/{id}', 'categoryDelete')->name('category-delete');//delete
 

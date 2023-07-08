@@ -63,7 +63,7 @@
             </a>
             <ul class="treeview-menu">
               <li><a href="{{ route('product-add') }}"><i class="ti-more"></i>add product</a></li>
-              <li><a href="{{route('sub-category')  }}"><i class="ti-more"></i>Sub Category</a></li>
+              <li><a href="{{route('product-manage')  }}"><i class="ti-more"></i>Manage product</a></li>
               <li><a href="mailbox_read_mail.html"><i class="ti-more"></i>Child Category</a></li>
             </ul>
           </li>

@@ -52,7 +52,7 @@
  <i class="fa fa-trash"></i></a>
 
 
- <a href="{{ route('brand-delete',$item->id) }}" class="btn btn-success" title="Delete Data" >
+ <a href="{{ route('inventory-add',$item->id) }}" class="btn btn-success" title="inventory" >
     <i class="fas fa-inventory"></i>  inventory  </a>
     </td>
 

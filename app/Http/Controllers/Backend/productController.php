@@ -8,8 +8,12 @@ use Image;
 use App\Models\category;
 use App\Models\subCategory;
 use App\Models\brand;
+use App\Models\color;
+use App\Models\inventory;
 use App\Models\product;
 use App\Models\ProductThumbnail;
+use App\Models\size;
+use Carbon\Carbon;
 
 class productController extends Controller
 {
@@ -87,10 +91,98 @@ public function manageProduct(Request $request){
 
     $products = product::all();
     return view('admin.product.manage',['products'=>$products]);
+}//end
+
+function variationProduct(){
+
+    $sizes = size::all();
+    $colors = color::all();
+
+    return view('admin.product.variation',['sizes'=>$sizes,'colors'=>$colors]);
+}//end
+
+public function sizeStore(Request $request){
+
+size::insert([
+
+'size_name'=>$request->size_name
+
+]);
+
+return back();
+
+}//end
+
+function colorDelete($id){
+
+    color::find($id)->delete();
+
+    return back();
+}
+
+public function colorStore(Request $request){
+
+
+    color::insert([
+
+        'color_name'=>$request->color_name
+
+        ]);
+
+        return back();
+
+}//end
+
+
+function sizeDelete($id){
+
+    size::find($id)->delete();
+
+    return back();
+}//end
+
+function inventoryAdd($product_id){
+
+    $id = $product_id;
+
+     $product_id = product::find($product_id);
+
+     $colors = color::all();
+     $sizes = size::all();
+     $inventories = Inventory::where('product_id', $id)->get();
+
+
+
+     return view('admin.product.inventory',[
+
+        'product_id'=>$product_id,
+        'colors'=>$colors,
+        'sizes'=>$sizes,
+        'inventories'=>$inventories,
+    ]);
+
+}//end
+
+function inventoryStore(Request $request){
+
+
+    if(Inventory::where('color_id', $request->color_id)->where('size_id', $request->size_id)->exists()){
+        Inventory::where('color_id', $request->color_id)->where('size_id', $request->size_id)->increment('quantity', $request->quantity);
+        return back();
+    }
+    else{
+        Inventory::insert([
+            'product_id'=>$request->product_id,
+            'color_id'=>$request->color_id,
+            'size_id'=>$request->size_id,
+            'quantity'=>$request->quantity,
+            'created_at'=>Carbon::now(),
+        ]);
+        return back();
+
 }
 
 
+}//end
 
-
-
-}
+ }

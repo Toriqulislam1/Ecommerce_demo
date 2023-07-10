@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
  use App\Http\Controllers\Backend\adminController;
  use App\Http\Controllers\Backend\brandController;
+ use App\Http\Controllers\frontend\frontendController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,10 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('frontend.frontend_master');
-});
+// Route::get('/', function () {
+//     return view('frontend.index');
+// });
 
+Route::controller(frontendController::class)->group(function () {
+    Route::get('/', 'index');
+
+});
 
 
 

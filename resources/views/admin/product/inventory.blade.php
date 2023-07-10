@@ -79,9 +79,9 @@
 
 <form method="post" action="{{ route('inventory-store') }}" enctype="multipart/form-data">
      @csrf
+{{ $product_id  }}
 
-
-<input type="hidden" name="product_id" value="{{ $product_id->id }}">
+<input type="hidden" name="product_id" value="{{$product_id }}">
 
 <div class="form-group">
 	<h5>color Select <span class="text-danger">*</span></h5>

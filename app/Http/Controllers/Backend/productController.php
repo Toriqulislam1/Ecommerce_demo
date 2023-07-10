@@ -143,13 +143,13 @@ function sizeDelete($id){
 
 function inventoryAdd($product_id){
 
-    $id = $product_id;
+    // $id_info = $product_id;
 
-     $product_id = product::find($product_id);
+    //   $product_id = product::where('product_id' , $product_id)->get();
 
      $colors = color::all();
      $sizes = size::all();
-     $inventories = Inventory::where('product_id', $id)->get();
+     $inventories = Inventory::where('product_id', $product_id)->get();
 
 
 
@@ -164,6 +164,8 @@ function inventoryAdd($product_id){
 }//end
 
 function inventoryStore(Request $request){
+
+    
 
 
     if(Inventory::where('color_id', $request->color_id)->where('size_id', $request->size_id)->exists()){
@@ -184,5 +186,37 @@ function inventoryStore(Request $request){
 
 
 }//end
+
+
+ function productDetails($product_id){
+
+    $id = $product_id;
+
+    $product_thumbnails = ProductThumbnail::where('product_id',$id)->get();
+    $colors = Inventory::where('product_id', $id)->groupBy('color_id')->selectRaw('sum(color_id) as sum,color_id')->get();
+    $sizes = Inventory::where('product_id', $id)->groupBy('size_id')->selectRaw('sum(size_id) as sum,size_id')->get();
+
+
+
+
+
+
+    $product_details = product::find($product_id);
+
+    return view('frontend.product.details',[
+        'product_details'=>$product_details,
+        'product_thumbnails'=>$product_thumbnails,
+        'colors'=>$colors,
+        'sizes'=>$sizes,
+
+    ]);
+
+ }
+
+
+
+
+
+
 
  }

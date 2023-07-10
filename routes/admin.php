@@ -48,6 +48,11 @@ Route::prefix('product')->controller(productController::class)->group(function (
     Route::get('/inventory/{id}', 'inventoryAdd')->name('inventory-add');//view
     Route::post('/inventory/store', 'inventoryStore')->name('inventory-store');//view
 
+
+
+    //product details
+    Route::get('/details/{product_id}/', 'productDetails')->name('product-details');//view
+
 });
 
 

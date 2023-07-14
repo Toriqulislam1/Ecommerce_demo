@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
  use App\Http\Controllers\Backend\adminController;
  use App\Http\Controllers\Backend\brandController;
  use App\Http\Controllers\frontend\frontendController;
+ use App\Http\Controllers\frontend\authController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,4 +44,18 @@ Route::prefix('brand')->controller(brandController::class)->group(function () {
     Route::get('/edit/{id}', 'brandEdit')->name('brand.edit');//index edit
     Route::post('/update', 'brandUpdate')->name('brand-update');//update store
     Route::get('/delete/{id}', 'brandDelete')->name('brand-delete');//update store
+});
+
+//customer login and register
+
+Route::prefix('customer')->controller(authController::class)->group(function () {
+    Route::get('/register', 'register')->name('customer-register-index');//index
+    Route::post('/register/store', 'registerStore')->name('customer.register.store');//store
+
+
+    Route::get('/login', 'login')->name('customer-login-index');//index
+    Route::post('/login/success', 'loginCheck')->name('customer.login');//check
+
+    // Route::post('/update', 'brandUpdate')->name('brand-update');//update store
+    // Route::get('/delete/{id}', 'brandDelete')->name('brand-delete');//update store
 });

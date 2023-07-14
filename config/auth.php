@@ -45,6 +45,12 @@ return [
             'driver' => 'session',
             'provider' => 'admins',
         ],
+
+
+        'customerlogin' => [
+            'driver' => 'session',
+            'provider' => 'customarlogins',
+        ],
     ],
 
     /*
@@ -73,6 +79,11 @@ return [
         'admins' => [
             'driver' => 'eloquent',
             'model' => App\Models\admin::class,
+        ],
+
+        'customarlogins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\customarlogin::class,
         ],
 
         // 'users' => [

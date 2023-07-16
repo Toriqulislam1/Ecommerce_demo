@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\customarlogin;
 use Illuminate\Support\Facades\Hash;
 use Auth;
+use Session;
 
 class authController extends Controller
 {
@@ -41,17 +42,27 @@ class authController extends Controller
 
         if(Auth::guard('customerlogin')->attempt(['email'=>$request->email, 'password'=>$request->password])){
 
-            return   "login success";
+            return view('frontend.customer.profile');
         }else{
 
-            return "not login";
+            return view('frontend.customer.register');
         }
 
 
 
 
 
-    }
+    }//end
+
+    function customerLogout(){
+        
+        Session::flush();
+
+        Auth::guard('customerlogin')->logout();
+    
+        return redirect()->route('customer-login-index');
+
+    }//end
 
 
 }

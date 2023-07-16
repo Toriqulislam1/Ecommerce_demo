@@ -77,51 +77,53 @@
                 </div>
                 <h3 class="font-weight-semi-bold mb-4">{{ $product_details->after_discount}}</h3>
                 <p class="mb-4">{{ $product_details->short_description }}</p>
+
+                <form action="{{ route('card-store') }}" method="post">
+                   @csrf
+
+                   <input type="hidden" name="product_id" value="{{ $product_details->id }}">
                 <div class="d-flex mb-3">
                     <p class="text-dark font-weight-medium mb-0 mr-3">Sizes:</p>
-                    <form>
+
                         @foreach ($sizes as $size)
 
 
                         <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" class="custom-control-input" id="size-{{ $size->rel_to_size->id }}" name="size">
+                            <input type="radio" class="custom-control-input" id="size-{{ $size->rel_to_size->id }}" value="{{ $size->rel_to_size->id }}" name="size_id">
                             <label class="custom-control-label" for="size-{{ $size->rel_to_size->id}}">{{ $size->rel_to_size->size_name }}</label>
                         </div>
 
                         @endforeach
-                    </form>
+
                 </div>
                 <div class="d-flex mb-4">
                     <p class="text-dark font-weight-medium mb-0 mr-3">Colors:</p>
-                    <form>
+
                         @foreach ($colors as $color)
 
-
                         <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" class="custom-control-input" id="color-{{ $color->rel_to_color->id}}" name="color">
+                            <input type="radio" class="custom-control-input" id="color-{{ $color->rel_to_color->id}}" name="color_id" value="{{ $color->rel_to_color->id  }}">
                             <label class="custom-control-label" for="color-{{ $color->rel_to_color->id }}">{{ $color->rel_to_color->color_name }}</label>
                         </div>
                         @endforeach
 
 
-                    </form>
+
                 </div>
                 <div class="d-flex align-items-center mb-4 pt-2">
-                    <div class="input-group quantity mr-3" style="width: 130px;">
+                    <div class="input-group mr-3" style="width: 130px;">
                         <div class="input-group-btn">
-                            <button class="btn btn-primary btn-minus" >
-                            <i class="fa fa-minus"></i>
-                            </button>
+                           <span>Quantity</span>
                         </div>
-                        <input type="text" class="form-control bg-secondary text-center" value="1">
+                        <input type="number" class="form-control bg-secondary text-center" value="1" name="quantity" >
                         <div class="input-group-btn">
-                            <button class="btn btn-primary btn-plus">
-                                <i class="fa fa-plus"></i>
-                            </button>
+
                         </div>
                     </div>
-                    <button class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</button>
+                    <button type="submit" class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</button>
                 </div>
+
+            </form>
                 <div class="d-flex pt-2">
                     <p class="text-dark font-weight-medium mb-0 mr-2">Share on:</p>
                     <div class="d-inline-flex">

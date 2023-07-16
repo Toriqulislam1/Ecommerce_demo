@@ -8,7 +8,7 @@
             <div class="col-lg-8">
 
                 <div class="mb-4">
-                    <h4 class="font-weight-semi-bold mb-4">Login</h4>
+                    <h4 class="font-weight-semi-bold mb-4">Register</h4>
 
                     <form action="{{ route('customer.register.store') }}" method="POST">
                         @csrf

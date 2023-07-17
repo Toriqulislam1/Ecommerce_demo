@@ -52,9 +52,12 @@
                 <i class="fas fa-heart text-primary"></i>
                 <span class="badge">0</span>
             </a>
+            @php
+                $cart_count  = App\Models\cart::where('user_id',auth()->guard('customerlogin')->user()->id)->get();
+            @endphp
             <a href="{{ route('cart-view') }}" class="btn border">
                 <i class="fas fa-shopping-cart text-primary"></i>
-                <span class="badge">0</span>
+                <span class="badge">{{ $cart_count->count() }}</span>
             </a>
         </div>
     </div>

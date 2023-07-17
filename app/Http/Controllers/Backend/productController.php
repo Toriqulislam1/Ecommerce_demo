@@ -165,7 +165,7 @@ function inventoryAdd($product_id){
 
 function inventoryStore(Request $request){
 
-    
+
 
 
     if(Inventory::where('color_id', $request->color_id)->where('size_id', $request->size_id)->exists()){
@@ -211,7 +211,14 @@ function inventoryStore(Request $request){
 
     ]);
 
- }
+ }//end
+
+ function couponIndex(){
+
+
+    return view('admin.product.coupon');
+
+ }//end
 
 
 

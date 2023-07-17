@@ -28,7 +28,17 @@ class cartController extends Controller
 
     public function cartview(){
 
-        return view('frontend.customer.cartview');
+        $carts = cart::where('user_id',auth()->guard('customerlogin')->user()->id)->get();
 
+        return view('frontend.customer.cartview',['carts'=>$carts]);
+
+    }//end
+
+
+
+    function cartDelete($cartId){
+
+        cart::find($cartId)->delete();
+        return back();
     }//end
 }

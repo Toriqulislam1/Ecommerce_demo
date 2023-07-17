@@ -52,6 +52,9 @@ Route::prefix('product')->controller(productController::class)->group(function (
 
     //product details
     Route::get('/details/{product_id}/', 'productDetails')->name('product-details');//view
+    //coupon
+
+    Route::get('/coupon/add', 'couponIndex')->name('coupon-view');//coupon
 
 });
 

@@ -65,6 +65,7 @@
               <li><a href="{{ route('product-add') }}"><i class="ti-more"></i>add product</a></li>
               <li><a href="{{route('product-manage')  }}"><i class="ti-more"></i>Manage product</a></li>
               <li><a href="{{ route('variation-product') }}"><i class="ti-more"></i>product variation</a></li>
+              <li><a href="{{ route('coupon-view') }}"><i class="ti-more"></i>coupon add</a></li>
             </ul>
           </li>
 

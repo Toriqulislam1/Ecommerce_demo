@@ -13,7 +13,9 @@ use App\Models\inventory;
 use App\Models\product;
 use App\Models\ProductThumbnail;
 use App\Models\size;
+use App\Models\coupon;
 use Carbon\Carbon;
+
 
 class productController extends Controller
 {
@@ -215,12 +217,31 @@ function inventoryStore(Request $request){
 
  function couponIndex(){
 
+$coupons =  coupon::all();
 
-    return view('admin.product.coupon');
+    return view('admin.product.coupon',['coupons'=>$coupons]);
 
  }//end
 
+function couponStore(Request $request){
 
+    coupon::insert([
+        'coupon_code'=>$request->coupon_code,
+        'type'=>$request->type,
+        'amount'=>$request->amount,
+        'validity'=>$request->validity,
+
+    ]);
+
+
+    return back();
+}//end
+
+function couponDelete($id){
+    coupon::find($id)->delete();
+
+    return back();
+}
 
 
 

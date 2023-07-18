@@ -55,6 +55,8 @@ Route::prefix('product')->controller(productController::class)->group(function (
     //coupon
 
     Route::get('/coupon/add', 'couponIndex')->name('coupon-view');//coupon
+    Route::post('/coupon/store', 'couponStore')->name('coupon-store');//coupon store
+    Route::get('/coupon/delete/{Id}', 'couponDelete')->name('coupon-delete');//coupon delete
 
 });
 

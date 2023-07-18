@@ -31,7 +31,7 @@
                     </thead>
                     <tbody class="align-middle">
                         @php
-                        $total = 0;
+                        $sub_total = 0;
                       @endphp
 
                         @foreach ($carts as  $cart)
@@ -60,7 +60,7 @@
 
 
                                  @php
-                                    $total += $cart->rel_to_product->after_discount*$cart->quantity;
+                                    $sub_total += $cart->rel_to_product->after_discount*$cart->quantity;
                                   @endphp
                         @endforeach
 
@@ -68,12 +68,34 @@
 
                 </table>
             </div>
+
+            @php
+            if ($type == 1) {
+
+                $after_discount = $sub_total - ($sub_total*$discount)/100;
+                }
+
+            else{
+
+                $after_discount = $discount;
+
+
+            }
+
+        @endphp
+
+
+
+
+
+
             <div class="col-lg-4">
-                <form class="mb-5" action="">
+                {{ $message }}
+                <form class="mb-5" action="{{ route('cart-view') }} " method="GET">
                     <div class="input-group">
-                        <input type="text" class="form-control p-4" placeholder="Coupon Code">
+                        <input type="text" name="coupon" class="form-control p-4" value="{{ $coupon }}" placeholder="Coupon Code">
                         <div class="input-group-append">
-                            <button class="btn btn-primary">Apply Coupon</button>
+                            <button type="submit" class="btn btn-primary">Apply Coupon</button>
                         </div>
                     </div>
                 </form>
@@ -84,17 +106,21 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between mb-3 pt-1">
                             <h6 class="font-weight-medium">Subtotal</h6>
-                            <h6 class="font-weight-medium">{{ $total }}</h6>
+                            <h6 class="font-weight-medium">{{$sub_total }}</h6>
                         </div>
                         <div class="d-flex justify-content-between">
                             <h6 class="font-weight-medium">Shipping</h6>
                             <h6 class="font-weight-medium">100</h6>
                         </div>
+                        <div class="d-flex justify-content-between">
+                            <h6 class="font-weight-medium">Discount</h6>
+                            <h6 class="font-weight-medium">{{ $after_discount }}</h6>
+                        </div>
                     </div>
                     <div class="card-footer border-secondary bg-transparent">
                         <div class="d-flex justify-content-between mt-2">
                             <h5 class="font-weight-bold">Total</h5>
-                            <h5 class="font-weight-bold">{{ $total +100}}</h5>
+                            <h5 class="font-weight-bold">{{ $sub_total - $after_discount +100}}</h5>
                         </div>
                         <button class="btn btn-block btn-primary my-3 py-3">Proceed To Checkout</button>
                     </div>

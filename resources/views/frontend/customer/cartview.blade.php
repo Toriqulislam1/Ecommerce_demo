@@ -122,7 +122,14 @@
                             <h5 class="font-weight-bold">Total</h5>
                             <h5 class="font-weight-bold">{{ $sub_total - $after_discount +100}}</h5>
                         </div>
-                        <button class="btn btn-block btn-primary my-3 py-3">Proceed To Checkout</button>
+
+                        @php
+                        session([
+                            'total'=>$sub_total - $after_discount +100,
+                        ])
+                    @endphp
+
+                        <a href="{{ route('checkout-view') }}" class="btn btn-block btn-primary my-3 py-3">Proceed To Checkout</a>
                     </div>
                 </div>
             </div>

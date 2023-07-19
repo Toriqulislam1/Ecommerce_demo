@@ -57,7 +57,7 @@ class cartController extends Controller
             }
 
         }
-    
+
 
 
 
@@ -87,7 +87,12 @@ class cartController extends Controller
         return back();
     }//end
 
+function checkoutIndex(){
 
+    return view('frontend.customer.checkout');
+
+
+}//end
 
 
 }

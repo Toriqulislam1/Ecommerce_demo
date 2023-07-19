@@ -64,10 +64,11 @@ Route::prefix('customer')->controller(authController::class)->group(function () 
 
 Route::prefix('cart')->controller(cartController::class)->group(function () {
     Route::post('/add', 'cartStore')->name('card-store');//store
-    Route::get('/cart/view', 'cartview')->name('cart-view');//store
-    Route::get('/cart/delete/{cartId}', 'cartDelete')->name('cart-delete');//cart delete
+    Route::get('/view', 'cartview')->name('cart-view');//store
+    Route::get('/delete/{cartId}', 'cartDelete')->name('cart-delete');//cart delete
+    Route::get('/checkout', 'checkoutIndex')->name('checkout-view');//caeckout view
 
-    
+
 
     //  Route::get('/logout', 'customerLogout')->name('customer.logout');//logout
 

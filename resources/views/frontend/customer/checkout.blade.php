@@ -17,38 +17,40 @@
 
 <!-- Checkout Start -->
 <div class="container-fluid pt-5">
+    <form action="{{ route('order-store') }}" method="post">
+        @csrf
+<input type="hidden" name="total" value=" {{ session('total') }} ">
+
     <div class="row px-xl-5">
+
         <div class="col-lg-8">
             <div class="mb-4">
                 <h4 class="font-weight-semi-bold mb-4">Billing Address</h4>
+
                 <div class="row">
+
+
+
                     <div class="col-md-6 form-group">
-                        <label>First Name</label>
-                        <input class="form-control" type="text" placeholder="John">
-                    </div>
-                    <div class="col-md-6 form-group">
-                        <label>Last Name</label>
-                        <input class="form-control" type="text" placeholder="Doe">
+                        <label>Name</label>
+                        <input class="form-control" type="text" placeholder="Doe" name="billing_name">
                     </div>
                     <div class="col-md-6 form-group">
                         <label>E-mail</label>
-                        <input class="form-control" type="text" placeholder="example@email.com">
+                        <input class="form-control" type="text"  name="billing_email" placeholder="example@email.com">
                     </div>
                     <div class="col-md-6 form-group">
                         <label>Mobile No</label>
-                        <input class="form-control" type="text" placeholder="+123 456 789">
+                        <input class="form-control" type="text" name="billing_mobile" placeholder="+123 456 789">
                     </div>
                     <div class="col-md-6 form-group">
                         <label>Address Line 1</label>
-                        <input class="form-control" type="text" placeholder="123 Street">
+                        <input class="form-control" type="text" name="billing_address" placeholder="123 Street">
                     </div>
-                    <div class="col-md-6 form-group">
-                        <label>Address Line 2</label>
-                        <input class="form-control" type="text" placeholder="123 Street">
-                    </div>
+
                     <div class="col-md-6 form-group">
                         <label>Country</label>
-                        <select class="custom-select">
+                        <select class="custom-select" name="billing_country">
                             <option selected>United States</option>
                             <option>Afghanistan</option>
                             <option>Albania</option>
@@ -57,15 +59,15 @@
                     </div>
                     <div class="col-md-6 form-group">
                         <label>City</label>
-                        <input class="form-control" type="text" placeholder="New York">
+                        <input class="form-control" type="text" name="billing_city" placeholder="New York">
                     </div>
                     <div class="col-md-6 form-group">
                         <label>State</label>
-                        <input class="form-control" type="text" placeholder="New York">
+                        <input class="form-control" type="text" name="billing_state" placeholder="New York">
                     </div>
                     <div class="col-md-6 form-group">
                         <label>ZIP Code</label>
-                        <input class="form-control" type="text" placeholder="123">
+                        <input class="form-control" type="text" name="billing_code" placeholder="123">
                     </div>
                     <div class="col-md-12 form-group">
                         <div class="custom-control custom-checkbox">
@@ -79,38 +81,34 @@
                             <label class="custom-control-label" for="shipto"  data-toggle="collapse" data-target="#shipping-address">Ship to different address</label>
                         </div>
                     </div>
+
                 </div>
             </div>
             <div class="collapse mb-4" id="shipping-address">
                 <h4 class="font-weight-semi-bold mb-4">Shipping Address</h4>
                 <div class="row">
+
+
                     <div class="col-md-6 form-group">
-                        <label>First Name</label>
-                        <input class="form-control" type="text" placeholder="John">
-                    </div>
-                    <div class="col-md-6 form-group">
-                        <label>Last Name</label>
-                        <input class="form-control" type="text" placeholder="Doe">
+                        <label>Name</label>
+                        <input class="form-control" type="text" name="shipping_name" placeholder="Doe">
                     </div>
                     <div class="col-md-6 form-group">
                         <label>E-mail</label>
-                        <input class="form-control" type="text" placeholder="example@email.com">
+                        <input class="form-control" type="text" name="shipping_email" placeholder="example@email.com">
                     </div>
                     <div class="col-md-6 form-group">
                         <label>Mobile No</label>
-                        <input class="form-control" type="text" placeholder="+123 456 789">
+                        <input class="form-control" type="text" name="shipping_mobile" placeholder="+123 456 789">
                     </div>
                     <div class="col-md-6 form-group">
                         <label>Address Line 1</label>
-                        <input class="form-control" type="text" placeholder="123 Street">
+                        <input class="form-control" type="text" name="shipping_address" placeholder="123 Street">
                     </div>
-                    <div class="col-md-6 form-group">
-                        <label>Address Line 2</label>
-                        <input class="form-control" type="text" placeholder="123 Street">
-                    </div>
+
                     <div class="col-md-6 form-group">
                         <label>Country</label>
-                        <select class="custom-select">
+                        <select class="custom-select" name="shipping_country">
                             <option selected>United States</option>
                             <option>Afghanistan</option>
                             <option>Albania</option>
@@ -119,16 +117,18 @@
                     </div>
                     <div class="col-md-6 form-group">
                         <label>City</label>
-                        <input class="form-control" type="text" placeholder="New York">
+                        <input class="form-control" type="text" name="shipping_city" placeholder="New York">
                     </div>
                     <div class="col-md-6 form-group">
                         <label>State</label>
-                        <input class="form-control" type="text" placeholder="New York">
+                        <input class="form-control" type="text" name="shipping_state" placeholder="New York">
                     </div>
                     <div class="col-md-6 form-group">
                         <label>ZIP Code</label>
-                        <input class="form-control" type="text" placeholder="123">
+                        <input class="form-control" type="text" name="shipping_zip" placeholder="123">
                     </div>
+
+
                 </div>
             </div>
         </div>
@@ -175,8 +175,8 @@
                 <div class="card-body">
                     <div class="form-group">
                         <div class="custom-control custom-radio">
-                            <input type="radio" class="custom-control-input" name="payment" id="paypal">
-                            <label class="custom-control-label" for="paypal">Paypal</label>
+                            <input type="radio" class="custom-control-input" name="payment_method" value="1" id="cash">
+                            <label class="custom-control-label" for="cash">Cash</label>
                         </div>
                     </div>
                     <div class="form-group">
@@ -193,11 +193,13 @@
                     </div>
                 </div>
                 <div class="card-footer border-secondary bg-transparent">
-                    <button class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">Place Order</button>
+                    <button type="submit" class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">Place Order</button>
                 </div>
             </div>
+
         </div>
     </div>
+</form>
 </div>
 <!-- Checkout End -->
 

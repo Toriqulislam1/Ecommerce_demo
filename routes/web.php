@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
  use App\Http\Controllers\Backend\brandController;
  use App\Http\Controllers\frontend\frontendController;
  use App\Http\Controllers\frontend\authController;
+ use App\Http\Controllers\Backend\checkoutController;
  use App\Http\Controllers\frontend\cartController;
 /*
 |--------------------------------------------------------------------------
@@ -71,5 +72,13 @@ Route::prefix('cart')->controller(cartController::class)->group(function () {
 
 
     //  Route::get('/logout', 'customerLogout')->name('customer.logout');//logout
+
+});
+
+
+Route::prefix('cart')->controller(checkoutController::class)->group(function () {
+
+    Route::post('/order', 'checkoutStore')->name('order-store');
+
 
 });

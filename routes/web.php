@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Route;
  use App\Http\Controllers\frontend\authController;
  use App\Http\Controllers\Backend\checkoutController;
  use App\Http\Controllers\frontend\cartController;
+ use App\Http\Controllers\frontend\ContactController;
+ use App\Http\Controllers\frontend\shopController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,12 +20,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('frontend.index');
-// });
 
 Route::controller(frontendController::class)->group(function () {
     Route::get('/', 'index');
+
+
+});
+//shop c
+Route::controller(shopController::class)->group(function () {
+    Route::get('/shop', 'shop')->name('shop');
+
+
+});
+
+//contact us
+Route::controller(ContactController::class)->group(function () {
+
+    Route::get('/contact', 'contact')->name('contact');
+
 
 });
 

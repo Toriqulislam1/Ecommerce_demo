@@ -86,9 +86,6 @@
 
 
 
-
-
-
             <div class="col-lg-4">
                 {{ $message }}
                 <form class="mb-5" action="{{ route('cart-view') }} " method="GET">
@@ -129,7 +126,7 @@
                         ])
                     @endphp
 
-                        <a href="{{ route('checkout-view') }}" class="btn btn-block btn-primary my-3 py-3">Proceed To Checkout</a>
+                        <a href="{{ route('checkout-view',) }}" class="btn btn-block btn-primary my-3 py-3">Proceed To Checkout</a>
                     </div>
                 </div>
             </div>

@@ -148,9 +148,9 @@
                 </div>
                 <div class="card-footer d-flex justify-content-between bg-light border">
                     <a href="{{ route('product-details',$product->id) }}" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-
                     <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
                 </div>
+
             </div>
         </div>
         @endforeach
@@ -355,3 +355,19 @@
     <!-- Vendor End -->
 <!-- Vendor End -->
 @endsection
+
+<script>
+
+
+@if(Session::has('buy'))
+                            <div class="alert alert-danger">
+                            {{ Session::get('buy')}}
+                            </div>
+                            @endif
+
+
+
+
+
+
+</script>

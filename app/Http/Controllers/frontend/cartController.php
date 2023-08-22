@@ -16,16 +16,28 @@ class cartController extends Controller
 {
     function cartStore(Request $request){
 
-        cart::insert([
+        if(auth()->guard('customerlogin')->check()){
 
-            'user_id'=>auth()->guard('customerlogin')->user()->id,
-            'product_id'=>$request->product_id,
-            'color_id'=>$request->color_id,
-            'size_id'=>$request->size_id,
-            'quantity'=>$request->quantity,
-        ]);
 
-        return back();
+            cart::insert([
+
+                'user_id'=>auth()->guard('customerlogin')->user()->id,
+                'product_id'=>$request->product_id,
+                'color_id'=>$request->color_id,
+                'size_id'=>$request->size_id,
+                'quantity'=>$request->quantity,
+            ]);
+
+            return back();
+
+
+        }else{
+            return redirect()->route('customer-login-index');
+        }
+
+
+
+
 
     }//end
 

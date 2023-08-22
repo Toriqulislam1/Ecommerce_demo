@@ -31,8 +31,8 @@
     </div>
     <div class="row align-items-center py-3 px-xl-5">
         <div class="col-lg-3 d-none d-lg-block">
-            <a href="" class="text-decoration-none">
-                <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">E</span>Shopper</h1>
+            <a href="{{ url('/') }}" class="text-decoration-none">
+                <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">Demo</span>Ecom</h1>
             </a>
         </div>
         <div class="col-lg-6 col-6 text-left">
@@ -52,13 +52,28 @@
                 <i class="fas fa-heart text-primary"></i>
                 <span class="badge">0</span>
             </a>
+
+            @if(auth()->guard('customerlogin')->check())
             @php
-                // $cart_count  = App\Models\cart::where('user_id',auth()->guard('customerlogin')->user()->id)->get();
+                 $cart_count  = App\Models\cart::where('user_id',auth()->guard('customerlogin')->user()->id)->get();
             @endphp
+            @endif
+
+
+            @if(auth()->guard('customerlogin')->check())
+
             <a href="{{ route('cart-view') }}" class="btn border">
                 <i class="fas fa-shopping-cart text-primary"></i>
-                {{-- <span class="badge">{{ $cart_count->count() }}</span> --}}
+                <span class="badge">{{ $cart_count->count() }}</span>
             </a>
+
+            @else
+            <a href="#" class="btn border">
+                <i class="fas fa-shopping-cart text-primary"></i>
+                <span class="badge">0</span>
+            </a>
+            @endif
+
         </div>
     </div>
 </div>

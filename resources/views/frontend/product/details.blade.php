@@ -124,6 +124,11 @@
                 </div>
 
             </form>
+            @if(Session::has('loginFirst'))
+            <div class="alert alert-danger">
+            {{ Session::get('loginFirst')}}
+            </div>
+            @endif
                 <div class="d-flex pt-2">
                     <p class="text-dark font-weight-medium mb-0 mr-2">Share on:</p>
                     <div class="d-inline-flex">

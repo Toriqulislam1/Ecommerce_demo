@@ -23,6 +23,8 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{{ asset('frontend/assets/css/style.css') }}" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -60,6 +62,8 @@
 
     <!-- Template Javascript -->
     <script src="{{ asset('frontend/assets/js/main.js') }}"></script>
+
+
 </body>
 
 </html>

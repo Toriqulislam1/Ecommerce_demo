@@ -79,6 +79,9 @@ Route::prefix('customer')->controller(authController::class)->group(function () 
 
 Route::prefix('cart')->controller(cartController::class)->group(function () {
     Route::post('/add', 'cartStore')->name('card-store');//store
+
+    Route::get('/store/{product}', 'cartStoretwo')->name('card-index');//store
+
     Route::get('/view', 'cartview')->name('cart-view');//store
     Route::get('/delete/{cartId}', 'cartDelete')->name('cart-delete');//cart delete
     Route::get('/checkout', 'checkoutIndex')->name('checkout-view');//caeckout view

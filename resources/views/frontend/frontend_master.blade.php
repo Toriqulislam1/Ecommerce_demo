@@ -34,7 +34,7 @@
 
 
     <!-- Navbar Start -->
-   @include('frontend.body.header')
+   {{-- @include('frontend.body.header') --}}
     <!-- Navbar End -->
 
 

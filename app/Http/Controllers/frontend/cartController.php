@@ -41,6 +41,28 @@ class cartController extends Controller
 
     }//end
 
+
+    public function cartStoretwo($product_id){
+
+
+        // if(auth()->guard('customerlogin')->check()){
+
+
+        //     cart::insert([
+
+        //         'user_id'=>auth()->guard('customerlogin')->user()->id,
+        //         'product_id'=>$product_id,
+        //         'color_id'=>'null',
+        //         'size_id'=>'null',
+        //         'quantity'=>1,
+        //     ]);
+
+        //     return back();
+        // }
+
+
+    }
+
     public function cartview(Request $request){
 
 

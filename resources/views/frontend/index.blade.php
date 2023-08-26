@@ -54,7 +54,8 @@
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Deshboard</a>
                             <div class="dropdown-menu rounded-0 m-0">
-                                <a href="cart.html" class="dropdown-item">Shopping Cart</a>
+                                <a href="{{ route('customer.order.show') }}" class="dropdown-item">Order</a>
+                                <a href="cart.html" class="dropdown-item">profile</a>
                                 <a href="{{ route('customer.logout') }}" class="dropdown-item">logout</a>
                             </div>
                         </div>

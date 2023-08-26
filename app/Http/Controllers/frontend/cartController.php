@@ -45,20 +45,23 @@ class cartController extends Controller
     public function cartStoretwo($product_id){
 
 
-        // if(auth()->guard('customerlogin')->check()){
+        if(auth()->guard('customerlogin')->check()){
 
 
-        //     cart::insert([
+            cart::insert([
 
-        //         'user_id'=>auth()->guard('customerlogin')->user()->id,
-        //         'product_id'=>$product_id,
-        //         'color_id'=>'null',
-        //         'size_id'=>'null',
-        //         'quantity'=>1,
-        //     ]);
+                'user_id'=>auth()->guard('customerlogin')->user()->id,
+                'product_id'=>$product_id,
 
-        //     return back();
-        // }
+            
+                'quantity'=>1,
+            ]);
+
+            return back();
+        }else{
+
+            return back();
+        }
 
 
     }

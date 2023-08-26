@@ -25,7 +25,10 @@ $products = product::all();
     }//end
 
 
+ function customerOrderShow(){
 
+    return view('frontend.customer.order');
+ }
 
 
 }

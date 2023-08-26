@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::controller(frontendController::class)->group(function () {
     Route::get('/', 'index');
+    Route::get('/account/order', 'customerOrderShow')->name('customer.order.show');
 
 
 });

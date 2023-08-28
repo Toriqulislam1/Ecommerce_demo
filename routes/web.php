@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
  use App\Http\Controllers\Backend\checkoutController;
  use App\Http\Controllers\frontend\cartController;
  use App\Http\Controllers\frontend\ContactController;
+ use App\Http\Controllers\frontend\searchController;
  use App\Http\Controllers\frontend\shopController;
 /*
 |--------------------------------------------------------------------------
@@ -97,6 +98,18 @@ Route::prefix('cart')->controller(cartController::class)->group(function () {
 Route::prefix('cart')->controller(checkoutController::class)->group(function () {
 
     Route::post('/order', 'checkoutStore')->name('order-store');
+    Route::get('/order/success', 'orderSuccess')->name('order.success');
 
 
 });
+
+//search controller
+
+Route::controller(searchController::class)->group(function () {
+
+    Route::get('/search', 'search')->name('search');
+    
+
+});
+
+

@@ -437,14 +437,12 @@
 
 
 @if(Session::has('buy'))
-                            <div class="alert alert-danger">
-                            {{ Session::get('buy')}}
-                            </div>
-                            @endif
 
-
-
-
-
+<div class="alert alert-danger">
+{{ Session::get('buy')}}
+</div>
+@endif
 
 </script>
+
+

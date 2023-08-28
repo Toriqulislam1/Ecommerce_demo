@@ -6,10 +6,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\order;
+use App\Models\cart;
+use App\Models\Inventory;
 use App\Models\billing_address;
 use App\Models\shipping_details;
 use Carbon\Carbon;
-
+use auth;
 
 class checkoutController extends Controller
 {
@@ -22,10 +24,13 @@ class checkoutController extends Controller
         if($request->payment_method == 1){
         //Orders
          $order_id = '#'.Str::upper(Str::random(3)).'-'.rand(99999999, 10000000);
+
+         $carts = Cart::where('user_id',auth()->guard('customerlogin')->user()->id)->get();
+         foreach($carts as $cart){
         Order::insert([
             'order_id'=>$order_id,
             'coustomer_id'=>auth()->guard('customerlogin')->user()->id,
-
+            'product_id'=>$cart->product_id,
             'total'=>$request->total,
             'discount'=>0,
             'delivery_charge'=>100,
@@ -33,6 +38,10 @@ class checkoutController extends Controller
             'created_at'=>Carbon::now(),
         ]);
 
+
+
+        Inventory::where('product_id', $cart->product_id)->where('color_id', $cart->color_id)->where('size_id', $cart->size_id)->decrement('quantity', $cart->quantity);
+    }
 
         //billing
         billing_address::insert([
@@ -67,13 +76,30 @@ class checkoutController extends Controller
         ]);
 
 
-        // Inventory::where('product_id', $cart->product_id)->where('color_id', $cart->color_id)->where('size_id', $cart->size_id)->decrement('quantity', $cart->quantity);
+        Cart::where('user_id', auth()->guard('customerlogin')->user()->id)->delete();
 
-        return back();
+        //  return redirect()->route('order.success')->withOrder($order_id);
+
+        return "order success";
 
         }
 
 
+        // function orderSuccess(){
+
+
+        //     return "ok";
+        //     if(session('order')){
+        //         $order_id = session('order');
+        //         return view('frontend.customer.ordersuccess', [
+        //             'order_id'=>$order_id,
+        //         ]);
+        //     }
+        //     else{
+        //         abort('404');
+        //     }
+
+        // }
 
 
 

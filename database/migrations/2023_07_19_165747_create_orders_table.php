@@ -16,6 +16,7 @@ return new class extends Migration
 
             $table->integer('coustomer_id');
             $table->string('order_id');
+            $table->integer('product_id');
             $table->integer('discount')->nullable();
             $table->integer('delivery_charge');
             $table->integer('total');
